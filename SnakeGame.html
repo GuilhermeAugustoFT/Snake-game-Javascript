@@ -4,10 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake Game</title>
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
 </head>
-<body>
 
-    <canvas id="stage" width="400" height="400"></canvas>
+    <style>
+
+        body{
+            background-color: rgb(0, 0, 0);
+        }
+    
+        #stage{
+            margin-top: 0px;
+            border: 6px solid transparent;
+            border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
+            border-image-slice: 1;
+        }       
+        
+        #title{
+            margin-top: 60px;
+            color: rgb(255, 255, 255);
+            font-family: Comfortaa;
+            font-size: 30pt;
+        }
+
+        #score{
+            color: white;
+            font-family: Comfortaa;
+            font-size: 60pt;
+        }
+
+
+    </style>
+
+<body>
+    
+    <center>
+        <h1 id="title">Snake Game</h1>
+    </center>
+    
+
+    <center>
+        <canvas id="stage" width="600" height="600"></canvas>
+    </center>
+
+    <center> <h1 id="score">Your score : 0</h1> </center>
+
     
 
     <script type="text/javascript">
@@ -25,11 +66,14 @@
             var vx = vy = 0; // iniciando a velocidade x e y da cobra com 0
             var px = py = 10; // local onde a cobra irá começar 
             var size = 20; // tamanho em px de cada quadrado
-            var quantity = 20 // numero de quadrados no canvas 
+            var quantity = 30 // numero de quadrados no canvas 
             var appleX = appleY = 15; // posição inicial da maçã
             
             var snake = [];
             var tail = 2;
+            started = false;
+
+            var score = 0;
 
             function game() {
                 
@@ -69,7 +113,10 @@
                     {
                         vx = vy = 0; // Para a cobra
                         tail = 2; // volta a cobra para o tamanho inicial
-                    }
+                        score = 0; // zera a pontuação  
+                        if(started)
+                            document.getElementById("score").innerHTML = "Your final score was : " + score; // diz ao usuário sua pontação final
+                    } 
                 }
 
                 snake.push({x : px, y : py}) // faz a cobra se movimentar
@@ -83,6 +130,8 @@
                     tail++; // a cauda da cobra aumenta
                     appleX = Math.floor(Math.random()*quantity); // Reposiciona a maçã
                     appleY = Math.floor(Math.random()*quantity); // Reposiciona a maçã
+                    score++; // aumenta a pontuação do jogador
+                    document.getElementById("score").innerHTML = "Your score : " + score; // Atualiza a pontuação do jogador
                 }
                 
 
@@ -90,23 +139,27 @@
 
             function keyMap(event) // função responsável pela movimentação
             {
+                
                 switch(event.keyCode) { // dependendo da tecla pressionada
                     case 37: // left
                         vx = -vel; // movimenta para a esquerda
                         vy = 0;
-                         
+                        started = true;  // Diz ao jogo que o usuário começou a jogar                       
                     break;
                     case 38: // Up
                         vy = - vel; // movimenta para cima
                         vx = 0;
+                        started = true; // Diz ao jogo que o usuário começou a jogar
                     break;
                     case 39: // right
                         vx = vel; // movimenta para a direita
                         vy = 0;
+                        started = true; // Diz ao jogo que o usuário começou a jogar
                     break;
                     case 40: // down
                         vy = vel; // movimenta para baixo
                         vx = 0;
+                        started = true; // Diz ao jogo que o usuário começou a jogar
                     break;
                 }
             }
