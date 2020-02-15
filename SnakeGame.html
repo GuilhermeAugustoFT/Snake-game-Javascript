@@ -35,7 +35,7 @@
             font-size: 55pt;
         }
 
-        #leaderboard-title{
+        .leaderboard-title{
             color : white;
             font-size: 27pt;
             font-family: Comfortaa;
@@ -46,6 +46,16 @@
         #leaderboard{
             color: white;
             font-family: Comfortaa;
+            font-size: 20pt;
+            margin-left: 80px;
+        }
+
+        #textBox{
+            color: white;
+            font-family: Comfortaa;
+            width:400px;
+            margin-left: 158px;
+            font-size: 20pt;
         }
 
 
@@ -60,7 +70,11 @@
     
     <div class="row">
 
-        <div class="col l4 s4 m4"></div>
+        <div class="col l4 s4 m4">
+            <h1 class="leaderboard-title">Enter your name here:</h1> 
+            
+            <input type="text" id="textBox" maxlength="10">
+        </div>
 
         <div class="col l4 s4 m4">
             <center>
@@ -71,8 +85,8 @@
         </div>
 
         <div class="col l4 s4 m4" id="leaderboard-div">
-            <h1 id="leaderboard-title">Session Leaderboard : </h1>
-            <ol type="I" id="leaderboard">
+            <h1 class="leaderboard-title">Session Leaderboard : </h1>
+            <ol type="" id="leaderboard">
                
             </ol>
         </div>
@@ -154,7 +168,7 @@
                         {
                             document.getElementById("score").innerHTML = "Your final score was : " + score; // diz ao usuário sua pontação final
                             started = false;
-                            leaderboard[index] = score;
+                            leaderboard[index] = {name: document.getElementById("textBox").value, score: score};
                             index++;
                             generateLeaderboard()
                         }
@@ -234,15 +248,27 @@
             
             function generateLeaderboard()
             {
-                leaderboard.sort();
+                leaderboard.sort(compare);
                 leaderboard.reverse();
                 var html = " ";
                 for(var i = 0; i < leaderboard.length; i++)
                 {
-                    html += "<li>" + leaderboard[i] + "</li>";
+                    html += "<li>" + leaderboard[i].name + " with "+ leaderboard[i].score + " points.</li>";
                 }
                 
                 document.getElementById("leaderboard").innerHTML = html;
+            }
+
+            function compare(a, b)
+            {
+                if(a.score > b.score)
+                    return 1;
+
+                if(a.score < b.score)
+                    return -1;
+
+                if(a.score == b.score)
+                return 0;
             }
         }
 
