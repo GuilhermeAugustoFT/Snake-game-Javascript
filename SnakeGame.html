@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake Game</title>
     <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
 </head>
 
     <style>
@@ -30,7 +32,15 @@
         #score{
             color: white;
             font-family: Comfortaa;
-            font-size: 60pt;
+            font-size: 55pt;
+        }
+
+        #leaderboard-title{
+            color : white;
+            font-size: 27pt;
+            font-family: Comfortaa;
+            margin-left: 150px;
+            margin-top: 0px;
         }
 
 
@@ -38,16 +48,29 @@
 
 <body>
     
+
     <center>
         <h1 id="title">Snake Game</h1>
     </center>
     
+    <div class="row">
 
-    <center>
-        <canvas id="stage" width="600" height="600"></canvas>
-    </center>
+        <div class="col l4 s4 m4"></div>
 
-    <center> <h1 id="score">Your score : 0</h1> </center>
+        <div class="col l4 s4 m4">
+            <center>
+                <canvas id="stage" width="600" height="600"></canvas>
+            </center>
+        
+            <center> <h1 id="score">Your score : 0</h1> </center>
+        </div>
+
+        <div class="col l4 s4 m4" id="leaderboard-div">
+            <h1 id="leaderboard-title">Session Leaderboard : </h1>
+        </div>
+       
+    </div>
+    
 
     
 
@@ -115,10 +138,14 @@
                     {
                         vx = vy = 0; // Para a cobra
                         tail = 2; // volta a cobra para o tamanho inicial
-                        score = 0; // zera a pontuação  
+                         
                         if(started)
+                        {
                             document.getElementById("score").innerHTML = "Your final score was : " + score; // diz ao usuário sua pontação final
-                        createButton();
+                            started = false;
+                        }
+
+                        score = 0; // zera a pontuação 
                     } 
                 }
 
