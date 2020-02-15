@@ -20,24 +20,25 @@
             border: 6px solid transparent;
             border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
             border-image-slice: 1;
+            margin: 0, 10, 10, 10;
         }       
         
         #title{
             margin-top: 60px;
             color: rgb(255, 255, 255);
             font-family: Comfortaa;
-            font-size: 30pt;
+            font-size: 25pt;
         }
 
         #score{
             color: white;
             font-family: Comfortaa;
-            font-size: 55pt;
+            font-size: 30pt;
         }
 
         .leaderboard-title{
             color : white;
-            font-size: 27pt;
+            font-size: 22pt;
             font-family: Comfortaa;
             margin-left: 150px;
             margin-top: 0px;
@@ -46,8 +47,8 @@
         #leaderboard{
             color: white;
             font-family: Comfortaa;
-            font-size: 20pt;
-            margin-left: 80px;
+            font-size: 15pt;
+            margin-left: 50px;
         }
 
         #textBox{
@@ -55,8 +56,8 @@
             font-family: Comfortaa;
             width:400px;
             margin-left: 158px;
-            font-size: 20pt;
-        }
+            font-size: 15pt;
+        }  
 
 
     </style>
@@ -78,7 +79,7 @@
 
         <div class="col l4 s4 m4">
             <center>
-                <canvas id="stage" width="600" height="600"></canvas>
+                <canvas id="stage" width="500" height="500"></canvas>
             </center>
         
             <center> <h1 id="score">Your score : 0</h1> </center>
@@ -111,7 +112,7 @@
             var vx = vy = 0; // iniciando a velocidade x e y da cobra com 0
             var px = py = 10; // local onde a cobra irá começar 
             var size = 20; // tamanho em px de cada quadrado
-            var quantity = 30 // numero de quadrados no canvas 
+            var quantity = 25 // numero de quadrados no canvas 
             var appleX = appleY = 15; // posição inicial da maçã
             
             var snake = [];
