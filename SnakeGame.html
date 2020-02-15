@@ -73,6 +73,8 @@
             var tail = 2;
             started = false;
 
+            var direction = " ";
+
             var score = 0;
 
             function game() {
@@ -116,6 +118,7 @@
                         score = 0; // zera a pontuação  
                         if(started)
                             document.getElementById("score").innerHTML = "Your final score was : " + score; // diz ao usuário sua pontação final
+                        createButton();
                     } 
                 }
 
@@ -142,28 +145,47 @@
                 
                 switch(event.keyCode) { // dependendo da tecla pressionada
                     case 37: // left
-                        vx = -vel; // movimenta para a esquerda
-                        vy = 0;
-                        started = true;  // Diz ao jogo que o usuário começou a jogar                       
+                        if(!(direction == "right")) // Se a direção não for a oposta
+                        {
+                            vx = -vel; // movimenta para a esquerda
+                            vy = 0;
+                            started = true;  // Diz ao jogo que o usuário começou a jogar   
+                            direction = "left"; // Muda o valor da váriavel que indica a direção
+                        }
+
+
                     break;
                     case 38: // Up
-                        vy = - vel; // movimenta para cima
-                        vx = 0;
-                        started = true; // Diz ao jogo que o usuário começou a jogar
+                        if(!(direction == "down")) // Se a direção não for a oposta
+                        { 
+                            vy = - vel; // movimenta para cima
+                            vx = 0;
+                            started = true; // Diz ao jogo que o usuário começou a jogar
+                            direction = "up"; // Muda o valor da váriavel que indica a direção
+                        }
                     break;
                     case 39: // right
-                        vx = vel; // movimenta para a direita
-                        vy = 0;
-                        started = true; // Diz ao jogo que o usuário começou a jogar
+                        if(!(direction == "left")) // Se a direção não for a oposta
+                        {
+                            vx = vel; // movimenta para a direita
+                            vy = 0;
+                            started = true; // Diz ao jogo que o usuário começou a jogar
+                            direction = "right"; // Muda o valor da váriavel que indica a direção
+                        }
+                       
                     break;
                     case 40: // down
-                        vy = vel; // movimenta para baixo
-                        vx = 0;
-                        started = true; // Diz ao jogo que o usuário começou a jogar
+                        if(!(direction == "up")) // Se a direção não for a oposta
+                        {
+                            vy = vel; // movimenta para baixo
+                            vx = 0;
+                            started = true; // Diz ao jogo que o usuário começou a jogar
+                            direction = "down"; // Muda o valor da váriavel que indica a direção
+                        }
+                        
                     break;
                 }
-            }
-           
+            }           
         }
 
     </script>
