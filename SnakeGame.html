@@ -42,6 +42,11 @@
             margin-left: 150px;
             margin-top: 0px;
         }
+        
+        #leaderboard{
+            color: white;
+            font-family: Comfortaa;
+        }
 
 
     </style>
@@ -67,6 +72,9 @@
 
         <div class="col l4 s4 m4" id="leaderboard-div">
             <h1 id="leaderboard-title">Session Leaderboard : </h1>
+            <ol type="I" id="leaderboard">
+               
+            </ol>
         </div>
        
     </div>
@@ -99,6 +107,9 @@
             var direction = " ";
 
             var score = 0;
+
+            var leaderboard = [];
+            var index = 0;
 
             function game() {
                 
@@ -143,7 +154,14 @@
                         {
                             document.getElementById("score").innerHTML = "Your final score was : " + score; // diz ao usuário sua pontação final
                             started = false;
+                            leaderboard[index] = score;
+                            index++;
+                            generateLeaderboard()
                         }
+
+                      
+                        
+
 
                         score = 0; // zera a pontuação 
                     } 
@@ -212,7 +230,20 @@
                         
                     break;
                 }
-            }           
+            }    
+            
+            function generateLeaderboard()
+            {
+                leaderboard.sort();
+                leaderboard.reverse();
+                var html = " ";
+                for(var i = 0; i < leaderboard.length; i++)
+                {
+                    html += "<li>" + leaderboard[i] + "</li>";
+                }
+                
+                document.getElementById("leaderboard").innerHTML = html;
+            }
         }
 
     </script>
