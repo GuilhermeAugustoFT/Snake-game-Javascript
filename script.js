@@ -68,7 +68,10 @@ window.onload = function(){
                 {
                     document.getElementById("score").innerHTML = "Your final score was : " + score; // diz ao usuário sua pontação final
                     started = false;
-                    leaderboard[index] = {name: document.getElementById("textBox").value, score: score};
+                    var username = document.getElementById("textBox").value;
+                    username = username.replace('<', '&lt');
+                    username = username.replace('>', '&gt');                
+                    leaderboard[index] = {name: username, score: score};
                     index++;
                     generateLeaderboard()
                 }
