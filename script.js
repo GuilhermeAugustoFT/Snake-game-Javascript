@@ -137,7 +137,8 @@ window.onload = function(){
         var html = " ";
         for(var i = 0; i < leaderboard.length; i++)
         {
-            html += "<li>" + leaderboard[i].name + " with "+ leaderboard[i].score + " points.</li>";
+            if(i < 20)
+                html += "<li>" + leaderboard[i].name + " with "+ leaderboard[i].score + " points.</li>";
         }
         
         document.getElementById("leaderboard").innerHTML = html;
