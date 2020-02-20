@@ -11,7 +11,7 @@ window.onload = function(){
     var vx = vy = 0; // iniciando a velocidade x e y da cobra com 0
     var px = py = 10; // local onde a cobra irá começar 
     var size = 20; // tamanho em px de cada quadrado
-    var quantity = 25 // numero de quadrados no canvas 
+    var quantity = 25; // numero de quadrados no canvas 
     var appleX = appleY = 15; // posição inicial da maçã
     
     var snake = [];
@@ -32,19 +32,19 @@ window.onload = function(){
 
         if(px < 0) // se a cobra sair do stage
         {
-            px = quantity - 1; // cobra reaparece do outro lado do stage
+            die();
         }
         if(px > quantity - 1) // se a cobra sair do stage
         {
-            px = 0; // cobra reaparece do outro lado do stage
+            die();
         }
         if(py < 0) // se a cobra sair do stage
         {
-            py = quantity - 1; // cobra reaparece do outro lado do stage
+            die();
         }
         if(py > quantity - 1) // se a cobra sair do stage
         {
-            py = 0; // cobra reaparece do outro lado do stage
+            die();
         }
         
         
@@ -61,26 +61,7 @@ window.onload = function(){
 
             if(px == snake[i].x && py == snake[i].y) // se a cabeça da cobra colidir com seu corpo
             {
-                vx = vy = 0; // Para a cobra
-                tail = 2; // volta a cobra para o tamanho inicial
-                 
-                if(started)
-                {
-                    document.getElementById("score").innerHTML = "Your final score was : " + score; // diz ao usuário sua pontação final
-                    started = false;
-                    var username = document.getElementById("textBox").value;
-                    username = username.replace('<', '&lt');
-                    username = username.replace('>', '&gt');                
-                    leaderboard[index] = {name: username, score: score};
-                    index++;
-                    generateLeaderboard()
-                }
-
-              
-                
-
-
-                score = 0; // zera a pontuação 
+                die();
             } 
         }
 
@@ -172,5 +153,31 @@ window.onload = function(){
 
         if(a.score == b.score)
         return 0;
+    }
+
+    function die()
+    {
+        vx = vy = 0; // Para a cobra
+        tail = 2; // volta a cobra para o tamanho inicial
+         
+        if(started)
+        {
+            document.getElementById("score").innerHTML = "Your final score was : " + score; // diz ao usuário sua pontação final
+            started = false;
+            var username = document.getElementById("textBox").value;
+            username = username.replace('<', '&lt');
+            username = username.replace('>', '&gt');                
+            leaderboard[index] = {name: username, score: score};
+            index++;
+            generateLeaderboard()
+
+            px = py = 10;
+        }
+
+        
+        
+
+
+        score = 0; // zera a pontuação 
     }
 }
